@@ -1,0 +1,27 @@
+# HousePrice-Prediction-Using-ML
+import pandas as pd
+import numpy as np
+from sklearn import linear_model
+import matplotlib.pyplot as plt
+df=pd.read_csv('housing.csv')
+df.head()
+%matplotlib inline
+plt.xlabel('area(sqrt ft)')
+plt.ylabel('prices(Rs)')
+plt.scatter(df.area,df.prices,color='red',marker='+')
+reg = linear_model.LinearRegression()
+reg.fit(df[['area']],df.prices)
+reg.coef_
+reg.intercept_
+135.78767123*3300+180616.43835616432
+d=pd.read_csv("areas.csv")
+d
+p=reg.predict(d)
+d['prices']=p
+d
+d.to_csv("prediction.csv")
+%matplotlib inline
+plt.xlabel('area(Sqrt ft)',fontsize=20)
+plt.ylabel('prices(Rs)',fontsize=20)
+plt.scatter(df.area,df.prices,color='red',marker='+')
+plt.plot(df.area,reg.predict(df[['area']]),color='blue')
